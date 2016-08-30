@@ -9,7 +9,7 @@ let $ = require('jquery'),
 function searchMovies(searchQuery) {
   return new Promise( function (resolve, reject) {
     $.ajax({
-      url: `http://www.omdbapi.com/?s=${searchQuery}&y=&plot=short&r=json&page=1`
+      url: `http://www.omdbapi.com/?s=${searchQuery}&y=&plot=short&type=movie&r=json&page=1`
     }).done(function(movieData) {
       console.log("movieData", movieData);
       resolve(movieData);
@@ -58,12 +58,12 @@ function secondMovieCall(movieData){
 
 
 function buildMovieObject (movieID, userId) {
-
   let movieObj = {
     Title: $(`#movieTitle${movieID}`).text(),
     Year: $(`#movieYear${movieID}`).text(),
     Actors: $(`#movieActors${movieID}`).text(),
     Rating: $(`#movieRating${movieID}`).text(),
+    Poster: $(`#moviePicture${movieID}`).attr('src'),
     uid: userId,
     movieID: movieID,
     fbId: null

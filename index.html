@@ -11,31 +11,41 @@
 
   <div class="row">
     <div class="col s12  grey darken-2 white-text z-depth-5 mhBanner">
-        <h3 class="center-align">JEEF Movies</h3>
+        <h3 class="center-align"><span class="strikethrough">JEEF Movies</span>The Cat Ladies</h3>
     </div>
 
     <div class="col s12 grey z-depth-4" id="movieTitleCol"> <!-- search and login -->
 
 
-      <span><a href="" id="searchMovies">Search</a></span>
+    <a class="waves-effect waves-light btn blue-grey darken-2" id="loginLink">Login</a>
       <span class="input-field" id="movieTitleSpan">
         <input placeholder="Enter Movie Title" id="movieTitleInput" type="text" class="validate">
         <label for="movieTitle"></label>
       </span>
 
-      <span id="loginLink" class="section"><a href="#">Login/Register/Logout</a></span>
+  <a class="waves-effect waves-light btn blue-grey darken-2" id="searchMovies" href="">Search Movies</a>
+      <!-- <span><a href="" id="searchMovies">Search</a></span> -->
+
+      <!-- <span id="loginLink" class="section"><a href="#">Login</a></span> -->
 
     </div>
 
     <div class="col s12 grey" id="filterCol">
-      <h5>Movie History ></h5>
+      <h5>Movie History > <span class="breadcrumb-target"></span></h5>
     </div>
 
     <div class="col s12 grey" id="filterButtonsCol">
-      <a class="waves-effect waves-light btn blue-grey darken-2">Show Untracked</a>
-      <a class="waves-effect waves-light btn blue-grey darken-2">Show Unwatched</a>
-      <a class="waves-effect waves-light btn blue-grey darken-2">Show Watched</a>
-      <a class="waves-effect waves-light btn blue-grey darken-2">Favorites</a>
+      <a class="waves-effect waves-light btn blue-grey darken-2" id="untracked-button">Show Untracked</a>
+      <a class="waves-effect waves-light btn blue-grey darken-2" id="unwatched-button">Show Unwatched</a>
+      <a class="waves-effect waves-light btn blue-grey darken-2" id="watched-button">Show Watched</a>
+      <label>
+        <h5 class="ratingLabel teal-text text-lighten-2">Sort by Rating:</h5>
+        <form action="#" class="range-slider-form">
+          <p class="range-field range-slider">
+          <input type="range" id="rating-slider" min="1" max="10"/>
+          </p>
+        </form>
+      </label>
     </div>
 
 
