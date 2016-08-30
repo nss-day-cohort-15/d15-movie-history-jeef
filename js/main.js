@@ -8,7 +8,8 @@ let $ = require('jquery'),
     firebase = require("firebase/app"),
     userId = "",
     myMovies = [],
-    movieResultsArray = [];
+    movieResultsArray = [],
+    user;
 
 
 function loadMoviesToDOM() {
@@ -31,7 +32,8 @@ $("#loginLink").click(function() {
   login()
   .then(function (result) {
     // var token = result.credential.accessToken;
-    let user = result.user;
+    user = result.user;
+    console.log(user);
     console.log("logged in user", user.uid);
     userId = user.uid;//uid is the key to building a proper firebase app!
     loadMoviesToDOM();
@@ -50,8 +52,9 @@ $("a").click(function(e){
 });
 
 $("#searchMovies").click(function() {
-  let searchQuery = $("#movieTitle").val();
+  let searchQuery = $("#movieTitleInput").val();
   console.log("clicked search");
+  if (user !== undefined) {
 
   db.searchMovies(searchQuery).then( function (movieTitles) {
     var movieTitlesArray = [];
@@ -66,6 +69,7 @@ $("#searchMovies").click(function() {
       console.log(movieTitlesArray);
       db.secondMovieCall(movieTitlesArray);
   });
+}
 
 });
 

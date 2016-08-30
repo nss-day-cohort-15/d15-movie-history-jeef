@@ -81,8 +81,8 @@ module.exports = { searchMovies, secondMovieCall, buildMovieObject };
 
 function getFbKey() {
   return {
-    key: "AIzaSyBqlH5nq52YvEc-etWM5EZFpfUecnf50vc",
-    authUrl: "movie-history-7fd8a.firebaseapp.com"
+    key: "AIzaSyBwOHP0ljVax0BRRTlFPmoGAVqv81ZpQhw",
+    authUrl: "cat-ladies-movie-history.firebaseapp.com"
   };
 }
 
@@ -101,7 +101,7 @@ let $ = require('jquery'),
 function getMovies() {
   return new Promise(function (resolve, reject) {
     $.ajax({
-      url: 'https://movie-history-7fd8a.firebaseio.com/movies.json',
+      url: 'https://cat-ladies-movie-history.firebaseio.com/movies.json',
     }).done(function (movieData) {
       resolve(movieData);
     });
@@ -113,7 +113,7 @@ function saveMovie(movieObj) {
   // console.log("fb 22 movie object", movieObj);
   return new Promise(function (resolve, reject) {
     $.ajax({
-      url: 'https://movie-history-7fd8a.firebaseio.com/movies.json',
+      url: 'https://cat-ladies-movie-history.firebaseio.com/movies.json',
       type: 'POST',  // used for first time posting to DB
       data: JSON.stringify(movieObj),
       dataType: 'json'
@@ -127,7 +127,7 @@ function saveMovie(movieObj) {
 function deleteMovie(movieId) {
   return new Promise(function (resolve, reject) {
     $.ajax({
-      url: `https://movie-history-7fd8a.firebaseio.com/movies/${movieId}.json`,
+      url: `https://cat-ladies-movie-history.firebaseio.com/movies/${movieId}.json`,
       type: 'DELETE'
     }).done(function (data) {
       resolve(data);
@@ -202,7 +202,8 @@ let $ = require('jquery'),
     firebase = require("firebase/app"),
     userId = "",
     myMovies = [],
-    movieResultsArray = [];
+    movieResultsArray = [],
+    user;
 
 
 function loadMoviesToDOM() {
@@ -225,7 +226,8 @@ $("#loginLink").click(function() {
   login()
   .then(function (result) {
     // var token = result.credential.accessToken;
-    let user = result.user;
+    user = result.user;
+    console.log(user);
     console.log("logged in user", user.uid);
     userId = user.uid;//uid is the key to building a proper firebase app!
     loadMoviesToDOM();
@@ -244,8 +246,9 @@ $("a").click(function(e){
 });
 
 $("#searchMovies").click(function() {
-  let searchQuery = $("#movieTitle").val();
+  let searchQuery = $("#movieTitleInput").val();
   console.log("clicked search");
+  if (user !== undefined) {
 
   db.searchMovies(searchQuery).then( function (movieTitles) {
     var movieTitlesArray = [];
@@ -260,6 +263,7 @@ $("#searchMovies").click(function() {
       console.log(movieTitlesArray);
       db.secondMovieCall(movieTitlesArray);
   });
+}
 
 });
 

@@ -10,7 +10,7 @@ let $ = require('jquery'),
 function getMovies() {
   return new Promise(function (resolve, reject) {
     $.ajax({
-      url: 'https://movie-history-7fd8a.firebaseio.com/movies.json',
+      url: 'https://cat-ladies-movie-history.firebaseio.com/movies.json',
     }).done(function (movieData) {
       resolve(movieData);
     });
@@ -22,7 +22,7 @@ function saveMovie(movieObj) {
   // console.log("fb 22 movie object", movieObj);
   return new Promise(function (resolve, reject) {
     $.ajax({
-      url: 'https://movie-history-7fd8a.firebaseio.com/movies.json',
+      url: 'https://cat-ladies-movie-history.firebaseio.com/movies.json',
       type: 'POST',  // used for first time posting to DB
       data: JSON.stringify(movieObj),
       dataType: 'json'
@@ -36,7 +36,7 @@ function saveMovie(movieObj) {
 function deleteMovie(movieId) {
   return new Promise(function (resolve, reject) {
     $.ajax({
-      url: `https://movie-history-7fd8a.firebaseio.com/movies/${movieId}.json`,
+      url: `https://cat-ladies-movie-history.firebaseio.com/movies/${movieId}.json`,
       type: 'DELETE'
     }).done(function (data) {
       resolve(data);
