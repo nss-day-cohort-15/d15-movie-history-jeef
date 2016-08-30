@@ -17,7 +17,8 @@ module.exports = function(grunt) {
         esnext: true,
         globalstrict: true,
         globals: {},
-        browserify: true
+        browserify: true,
+        debug: true
       },
       files: ['./js/**/*.js']
     },
