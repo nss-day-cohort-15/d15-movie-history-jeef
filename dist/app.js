@@ -244,9 +244,9 @@ $("a").click(function(e){
 });
 
 $("#searchMovies").click(function() {
-  let searchQuery = $("#movieTitle").val();
+  let searchQuery = $("#movieTitleInput").val();
   console.log("clicked search");
-
+  debugger;
   db.searchMovies(searchQuery).then( function (movieTitles) {
     var movieTitlesArray = [];
     $.each(movieTitles.Search, function (index, key) {
@@ -333,8 +333,6 @@ $(document).on("click", ".deleteChip", function() {
     loadMoviesToDOM();
   });
 });
-
-
 
 },{"./db-interactions":1,"./fb-interactions":3,"./hbcontrols":5,"./user":7,"firebase/app":8,"jquery":32}],7:[function(require,module,exports){
 "use strict";
