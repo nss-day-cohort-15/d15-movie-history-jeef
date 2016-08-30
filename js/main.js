@@ -50,7 +50,7 @@ $("a").click(function(e){
 });
 
 $("#searchMovies").click(function() {
-  let searchQuery = $("#movieTitle").val();
+  let searchQuery = $("#movieTitleInput").val();
   console.log("clicked search");
 
   db.searchMovies(searchQuery).then( function (movieTitles) {
